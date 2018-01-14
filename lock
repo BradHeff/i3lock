@@ -1,0 +1,30 @@
+#!/bin/bash
+lock="/home/pheonix/.config/i3/lock2.png"
+wall="/home/pheonix/Pictures/cyborg-babe-girl-wide.jpg"
+if [ ! -f "$lock" ] 
+then
+	echo "No $lock"
+else
+	if [ ! -f "$wall" ] 
+	then
+		echo "no $wall"
+	else
+		if [ ! -f /tmp/screen.png ] 
+		then
+			if [ ! -f /tmp/screen1.png ] 
+			then
+				convert "$wall" -gravity center ~/.config/i3/"$lock" -composite -matte /tmp/screen1.png
+			fi
+
+			if [ ! -f /tmp/screen2.png ] 
+			then
+				cp /tmp/screen1.png /tmp/screen2.png
+			fi
+
+			montage /tmp/screen1.png /tmp/screen2.png -geometry +0+0 /tmp/screen.png
+		fi
+	fi
+
+	i3lock -e -i /tmp/screen.png
+	xset dpms force off
+fi
