@@ -13,7 +13,7 @@ else
 		then
 			if [ ! -f /tmp/screen1.png ] 
 			then
-				convert "$wall" -gravity center ~/.config/i3/"$lock" -composite -matte /tmp/screen1.png
+				convert "$wall" -gravity center "$lock" -composite -matte /tmp/screen1.png
 			fi
 
 			if [ ! -f /tmp/screen2.png ] 
